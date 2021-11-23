@@ -8,7 +8,8 @@ import {
 	User,
 	UserGreeting,
 	UserName,
-	UserWrapper
+	UserWrapper,
+	Icon
 } from './styles';
 
 const Dashboard: React.FC = () => {
@@ -23,6 +24,7 @@ const Dashboard: React.FC = () => {
 							<UserName>Rafinhaa</UserName>
 						</User>
 					</UserInfo>
+					<Icon name="power"/>
 				</UserWrapper>
 			</Header>
 		</Container>
