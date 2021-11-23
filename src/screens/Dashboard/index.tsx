@@ -1,11 +1,30 @@
 import React from 'react';
 
-import { Container, Title } from './styles';
+import {
+	Container,
+	Header,
+	UserInfo,
+	Photo,
+	User,
+	UserGreeting,
+	UserName,
+	UserWrapper
+} from './styles';
 
 const Dashboard: React.FC = () => {
 	return (
 		<Container>
-			<Title>Dashboard</Title>
+			<Header>
+				<UserWrapper>
+					<UserInfo>
+						<Photo source={{ uri: 'https://github.com/rafinhaa.png' }} />
+						<User>
+							<UserGreeting>Olá,</UserGreeting>
+							<UserName>Rafinhaa</UserName>
+						</User>
+					</UserInfo>
+				</UserWrapper>
+			</Header>
 		</Container>
 	);
 }
