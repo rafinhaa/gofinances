@@ -15,7 +15,7 @@ const HighlightCard: React.FC = () => {
         <Container>
             <Header>
                 <Title>Entrada</Title>
-                <Icon name="arrow-up-cicle" size={24} color="#FFB84D" />
+                <Icon name="x" size={24} color="#FFB84D" />
             </Header>   
             <Footer>
                 <Amount>R$ 100,00</Amount>
