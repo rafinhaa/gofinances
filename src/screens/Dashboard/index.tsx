@@ -1,4 +1,5 @@
 import React from 'react';
+import HighlightCard from '../../components/HighlightCard';
 
 import {
 	Container,
@@ -27,6 +28,7 @@ const Dashboard: React.FC = () => {
 					<Icon name="power"/>
 				</UserWrapper>
 			</Header>
+			<HighlightCard />
 		</Container>
 	);
 }
