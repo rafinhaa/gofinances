@@ -33,9 +33,24 @@ const Dashboard: React.FC = () => {
 				horizontal
 				showsHorizontalScrollIndicator={false}
 			>
-				<HighlightCard/>
-				<HighlightCard/>
-				<HighlightCard/>
+				<HighlightCard
+					title="Entradas"
+					amount="3"
+					lastTransaction="R$ 1.000,00"
+					type="up"
+				/>
+				<HighlightCard
+					title="Saídas"
+					amount="3"
+					lastTransaction="R$ 1.000,00"
+					type="down"
+				/>
+				<HighlightCard
+					title="Meus projetos"
+					amount="3"
+					lastTransaction="R$ 1.000,00"
+					type="total"
+				/>
 			</HighlightCards>
 		</Container>
 	);
