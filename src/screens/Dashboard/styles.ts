@@ -81,3 +81,10 @@ export const Title = styled.Text`
     font-family: ${({ theme }) => theme.fonts.bold};
     margin-bottom: 16px;
 `;
+
+export const TransactionsList = styled.FlatList.attrs({
+    showsVerticalScrollIndicator: false,
+    contentContainerStyle: {
+        paddingBottom: 16,
+    },
+})``;

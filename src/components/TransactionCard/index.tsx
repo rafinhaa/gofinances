@@ -11,18 +11,32 @@ import {
     Date,
 } from './styles';
 
-const TransactionCard: React.FC = () => {
+interface Category {
+    name: string;
+    icon: string;
+}
+
+interface Props {
+    data : {
+        title: string;
+        amount: string;
+        category: Category;
+        date: string;
+    };
+}
+
+const TransactionCard: React.FC<Props> = ({data}) => {
   return (
     <Container>
-        <Title>Desenvolvimento de Site</Title>
-        <Amount>R$ 12.000</Amount>
+        <Title>{data.title}</Title>
+        <Amount>{data.amount}</Amount>
         <Footer>
             <Category>
                 <Icon name="dollar-sign"/>
-                <CategoryName>Vendass</CategoryName>
+                <CategoryName>{data.category.name}</CategoryName>
             </Category>
 
-            <Date>01/01/2001</Date>
+            <Date>{data.date}</Date>
         </Footer>
     </Container>
   );
