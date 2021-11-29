@@ -22,6 +22,7 @@ import {
 const Dashboard: React.FC = () => {
 	const data = [
 		{
+			type: 'positive',
 			title:"Entradas",
 			amount:"3",
 			category:{
@@ -31,11 +32,12 @@ const Dashboard: React.FC = () => {
 			date:"20/10/2020"
 		},
 		{
+			type: 'negative',
 			title:"Saídas",
 			amount:"3",
 			category:{
 				name: 'Alimentação',
-				icon: 'dollar-sign',
+				icon: 'coffee',
 			},
 			date:"20/10/2020"
 		},
