@@ -1,5 +1,6 @@
 import React from 'react';
 import HighlightCard from '../../components/HighlightCard';
+import TransactionCard from '../../components/TransactionCard';
 
 import {
 	Container,
@@ -12,6 +13,8 @@ import {
 	UserWrapper,
 	Icon,
 	HighlightCards,
+	Title,
+	Transactions,
 } from './styles';
 
 const Dashboard: React.FC = () => {
@@ -52,6 +55,12 @@ const Dashboard: React.FC = () => {
 					type="total"
 				/>
 			</HighlightCards>
+			<Transactions>
+				<Title>Olá</Title>
+				<TransactionCard />
+				<TransactionCard />
+				<TransactionCard />
+			</Transactions>
 		</Container>
 	);
 }
