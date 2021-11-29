@@ -16,17 +16,19 @@ interface Category {
     icon: string;
 }
 
-interface Props {
-    data : {
-        type: 'positive' | 'negative';
-        title: string;
-        amount: string;
-        category: Category;
-        date: string;
-    };
+export interface TransactionCardProps {
+    type: 'positive' | 'negative';
+    title: string;
+    amount: string;
+    category: Category;
+    date: string;
 }
 
-const TransactionCard: React.FC<Props> = ({data}) => {
+interface Props {
+    data: TransactionCardProps;
+}
+
+const TransactionCard: React.FC<TransactionCardProps> = ({data}) => {
   return (
     <Container>
         <Title>{data.title}</Title>
