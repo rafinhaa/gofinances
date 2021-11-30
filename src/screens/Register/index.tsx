@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../components/Form/Button/input';
 import Input from '../../components/Form/Input';
 
 import { 
@@ -6,6 +7,7 @@ import {
     Header,
     Title,
     Form,
+    Fields
 } from './styles';
 
 const Register: React.FC = () => {
@@ -15,8 +17,11 @@ const Register: React.FC = () => {
                 <Title>Cadastro</Title>
             </Header>
             <Form>
-                <Input placeholder="Nome"/>
-                <Input placeholder="Preço"/>
+                <Fields>
+                    <Input placeholder="Nome"/>
+                    <Input placeholder="Preço"/>
+                </Fields>
+                <Button title="Enviar"/>
             </Form>
         </Container>
     );

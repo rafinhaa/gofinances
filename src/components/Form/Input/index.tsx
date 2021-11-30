@@ -6,9 +6,9 @@ import { Container } from './styles';
 type Props = TextInputProps;
 
 const Input: React.FC<Props> = ({...rest}: Props) => {
-  return (
+    return (
         <Container {...rest} />
-      );
+    );
 }
 
 export default Input;
