@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../../components/Form/Button/input';
+import CategorySelect from '../../components/Form/CategorySelect';
 import Input from '../../components/Form/Input';
 import TransactionTypeButton from '../../components/Form/TransactionTypeButton';
 
@@ -41,6 +42,7 @@ const Register: React.FC = () => {
                             isActive={transactionType === 'down'}
                         />
                     </TransactionTypes>
+                    <CategorySelect title="Categoria" />
                 </Fields>
                 <Button title="Enviar"/>
             </Form>
