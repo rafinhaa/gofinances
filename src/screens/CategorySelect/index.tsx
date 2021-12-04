@@ -20,7 +20,7 @@ interface Category {
 }
 
 interface Props {
-    category: string;
+    category: Category;
     setCategory: (category: Category) => void;
     closeSelectCategory: () => void;
 }
@@ -30,7 +30,12 @@ const CategorySelect: React.FC<Props> = ({
     setCategory,
     closeSelectCategory,
 }) => {
-  return (
+
+    function handleSelectCategory(category: Category) {
+        setCategory(category);
+    }
+
+    return (
         <Container >
             <Header>
                 <Title>Categoria</Title>
@@ -40,7 +45,10 @@ const CategorySelect: React.FC<Props> = ({
                 style={{ flex: 1 , width: '100%'}}
                 keyExtractor={(item) => item.key}
                 renderItem={({ item }) => ( 
-                    <Category>
+                    <Category
+                        onPress={() => handleSelectCategory(item)}
+                        isActive={item.key === category.key}
+                    >
                         <Icon name={item.icon}/>
                         <Name>{item.name}</Name>
                     </Category>
@@ -50,6 +58,7 @@ const CategorySelect: React.FC<Props> = ({
             <Footer>
                 <Button
                     title="Selecionar"
+                    onPress={closeSelectCategory}
                 />
             </Footer>
 
