@@ -23,7 +23,7 @@ export const Amount = styled.Text<TransactionCardProps>`
     margin-top: 2px;
     font-size: ${RFValue(20)}px;
     font-family: ${({ theme }) => theme.fonts.regular};
-    color: ${({ theme, type }) => type === 'positive' ? theme.colors.sucess : theme.colors.attention};
+    color: ${({ theme, type }) => type === 'positive' ? theme.colors.success : theme.colors.attention};
 `;
 
 export const Footer = styled.View`

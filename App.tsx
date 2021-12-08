@@ -10,6 +10,9 @@ import AppLoading from 'expo-app-loading';
 
 import Register from './src/screens/Register';
 import theme  from './src/global/styles/theme';
+import { NavigationContainer } from '@react-navigation/native';
+import { AppRoutes } from './src/routes/app.routes';
+import Dashboard from './src/screens/Dashboard';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ // aguarda o carregamento das fontes
@@ -25,7 +28,9 @@ export default function App() {
   return (
 
     <ThemeProvider theme={theme}>
-      <Register />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
