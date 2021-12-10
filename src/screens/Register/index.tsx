@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import {
     Keyboard,
     Modal,
@@ -13,6 +13,7 @@ import Button from '../../components/Form/Button';
 import TransactionTypeButton from '../../components/Form/TransactionTypeButton';
 import CategorySelectButton from '../../components/Form/CategorySelectButton';
 import CategorySelect from '../CategorySelect';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     Container,
@@ -51,6 +52,7 @@ const Register: React.FC = () => {
     });
     const [transactionType, setTransactionType] = useState('');
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+    const dataKey = '@gofinances:transactions';
 
     function handleTransactionType(type: 'up' | 'down') {
         setTransactionType(type);
@@ -64,7 +66,7 @@ const Register: React.FC = () => {
         setCategoryModalOpen(true);
     }
 
-    function handleRegister(form: FormDate) {
+    async function handleRegister(form: FormDate) {
         if (!transactionType) {
             return Alert.alert('Erro', 'Selecione um tipo de transação');
         }
@@ -78,8 +80,21 @@ const Register: React.FC = () => {
             transactionType,
             category: category.key,
         }
-        console.log(data);
+        try {
+            await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+        } catch (error) {
+            console.log(error); 
+            Alert.alert('Erro', 'Erro ao registrar transação');
+        }
     }
+
+    useEffect(() => {
+        async function loadData() {
+            const data = await AsyncStorage.getItem(dataKey);
+            console.log(JSON.parse(data)!);
+        }
+        loadData();
+    },[])
 
     return (
         <TouchableWithoutFeedback
