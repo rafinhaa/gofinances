@@ -22,6 +22,7 @@ import {
 	Title,
 	Transactions,
 	TransactionsList,
+	LogoutButton,
 } from './styles';
 
 const Dashboard: React.FC = () => {
@@ -62,7 +63,9 @@ const Dashboard: React.FC = () => {
 							<UserName>Rafinhaa</UserName>
 						</User>
 					</UserInfo>
-					<Icon name="power"/>
+					<LogoutButton onPress={ () => {} } >
+						<Icon name="power"/>
+					</LogoutButton>
 				</UserWrapper>
 			</Header>
 			<HighlightCards
