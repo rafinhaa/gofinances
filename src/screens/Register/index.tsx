@@ -74,14 +74,21 @@ const Register: React.FC = () => {
             return Alert.alert('Erro', 'Selecione uma categoria');
         }
 
-        const data = {
+        const newTransaction = {
+            id: Math.random().toString(),
             name: form.name,
             amount: form.amount,
             transactionType,
             category: category.key,
         }
         try {
-            await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+            const data = await AsyncStorage.getItem(dataKey);
+            const currentData = data ? JSON.parse(data) : [];
+            const dataFormatted = [
+                ...currentData,
+                newTransaction,
+            ];
+            await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
         } catch (error) {
             console.log(error); 
             Alert.alert('Erro', 'Erro ao registrar transação');
@@ -94,6 +101,10 @@ const Register: React.FC = () => {
             console.log(JSON.parse(data)!);
         }
         loadData();
+        async function removeAll() {
+            await AsyncStorage.removeItem(dataKey);
+        }
+        //removeAll();
     },[])
 
     return (
