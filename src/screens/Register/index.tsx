@@ -15,7 +15,14 @@ import CategorySelectButton from '../../components/Form/CategorySelectButton';
 import CategorySelect from '../CategorySelect';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { AppRoutesParamList } from "../../routes/app.routes";
+
+type RegisterNavigationProps = BottomTabNavigationProp<
+  AppRoutesParamList,
+  "Listagem"
+>;
 
 import {
     Container,
@@ -45,7 +52,7 @@ const Register: React.FC = () => {
         key: 'category',
         name: 'Categoria',
     });
-    const navigation = useNavigation();
+    const navigation = useNavigation<RegisterNavigationProps>();
     const {
         control,
         handleSubmit,

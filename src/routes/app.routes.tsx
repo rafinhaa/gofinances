@@ -7,9 +7,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Dashboard from '../screens/Dashboard';
 import Register from '../screens/Register';
 
-const { Navigator, Screen } = createBottomTabNavigator();
+const { Navigator, Screen } = createBottomTabNavigator<AppRoutesParamList>();
 
-
+export type AppRoutesParamList = {
+    Listagem: undefined;
+    Cadastrar: undefined;
+    Resumo: undefined;
+};
 
 export function AppRoutes() {
     const theme = useTheme();
@@ -36,7 +40,7 @@ export function AppRoutes() {
                 }}
             />
             <Screen 
-                name="Registro" 
+                name="Cadastrar" 
                 component={Register}
                 options={{
                     tabBarIcon: ({ color, size }) => (
