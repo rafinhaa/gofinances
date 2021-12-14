@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import {
     Keyboard,
     Modal,
@@ -14,6 +14,8 @@ import TransactionTypeButton from '../../components/Form/TransactionTypeButton';
 import CategorySelectButton from '../../components/Form/CategorySelectButton';
 import CategorySelect from '../CategorySelect';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuid from 'react-native-uuid';
+import { useNavigation } from '@react-navigation/native';
 
 import {
     Container,
@@ -43,10 +45,12 @@ const Register: React.FC = () => {
         key: 'category',
         name: 'Categoria',
     });
+    const navigation = useNavigation();
     const {
         control,
         handleSubmit,
-        formState: { errors }
+        formState: { errors },
+        reset,
     } = useForm({
         resolver: yupResolver(schema),
     });
@@ -75,11 +79,12 @@ const Register: React.FC = () => {
         }
 
         const newTransaction = {
-            id: Math.random().toString(),
+            id: String(uuid.v4()),
             name: form.name,
             amount: form.amount,
             transactionType,
             category: category.key,
+            date: new Date()
         }
         try {
             const data = await AsyncStorage.getItem(dataKey);
@@ -89,23 +94,30 @@ const Register: React.FC = () => {
                 newTransaction,
             ];
             await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+            reset();
+            setTransactionType('');
+            setCategory({
+                key: 'category',
+                name: 'Categoria',
+            });
+            navigation.navigate('Listagem');
         } catch (error) {
             console.log(error); 
             Alert.alert('Erro', 'Erro ao registrar transação');
         }
     }
 
-    useEffect(() => {
-        async function loadData() {
-            const data = await AsyncStorage.getItem(dataKey);
-            console.log(JSON.parse(data)!);
-        }
-        loadData();
-        async function removeAll() {
-            await AsyncStorage.removeItem(dataKey);
-        }
-        //removeAll();
-    },[])
+    // useEffect(() => {
+    //     async function loadData() {
+    //         const data = await AsyncStorage.getItem(dataKey);
+    //         console.log(JSON.parse(data)!);
+    //     }
+    //     loadData();
+    //     async function removeAll() {
+    //         await AsyncStorage.removeItem(dataKey);
+    //     }
+    //     removeAll();
+    // },[])
 
     return (
         <TouchableWithoutFeedback
