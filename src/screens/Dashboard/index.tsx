@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HighlightCard from '../../components/HighlightCard';
 import TransactionCard from '../../components/TransactionCard';
 import { TransactionCardProps } from '../../components/TransactionCard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface DataListProps extends TransactionCardProps {
 	id: string;
@@ -27,31 +28,41 @@ import {
 
 const Dashboard: React.FC = () => {
 
-	const data: DataListProps[] = [
-		{
-			id: '1',
-			type: 'positive',
-			title:"Entradas",
-			amount:"3",
-			category:{
-				name: 'Alimentação',
-				icon: 'dollar-sign',
-			},
-			date:"20/10/2020"
-		},
-		{
-			id: '2',
-			type: 'negative',
-			title:"Saídas",
-			amount:"3",
-			category:{
-				name: 'Alimentação',
-				icon: 'coffee',
-			},
-			date:"20/10/2020"
-		},
-	];
+	const [data, setData] = React.useState<DataListProps[]>([]);
+	
+	async function loadTransactions() {
+		const dataKey = '@gofinances:transactions';
+		const response = await AsyncStorage.getItem(dataKey);
+		const transactions = response ? JSON.parse(response) : [];
 
+		const transactionsFormatted: DataListProps[] = transactions
+			.map((item: DataListProps) => {
+				const amount = Number(item.amount)
+					.toLocaleString('pt-BR', {
+						style: 'currency',
+						currency: 'BRL',
+					});
+				const dateFormatted = Intl.DateTimeFormat('pt-BR', {
+					day: '2-digit',
+					month: '2-digit',
+					year: '2-digit',
+				}).format(new Date(item.date));
+				return {
+					id: item.id,
+					name: item.name,
+					amount,
+					type: item.type,
+					category: item.category,
+					date: dateFormatted,
+				}
+			}
+		);
+		setData(transactionsFormatted);
+	}
+	useEffect(() => {
+		loadTransactions();
+	}, []);
+	
 	return (
 		<Container>
 			<Header>
