@@ -103,7 +103,7 @@ const Dashboard: React.FC = () => {
 				/>
 			</HighlightCards>
 			<Transactions>
-				<Title>Olá</Title>
+				<Title>Listagem</Title>
 				<TransactionsList
 					data={data}
 					keyExtractor={item => String(item.id)}
