@@ -65,7 +65,7 @@ const Register: React.FC = () => {
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);
     const dataKey = '@gofinances:transactions';
 
-    function handleTransactionType(type: 'up' | 'down') {
+    function handleTransactionType(type: 'positive' | 'negative') {
         setTransactionType(type);
     }
 
@@ -89,7 +89,7 @@ const Register: React.FC = () => {
             id: String(uuid.v4()),
             name: form.name,
             amount: form.amount,
-            transactionType,
+            type: transactionType,
             category: category.key,
             date: new Date()
         }
@@ -155,14 +155,14 @@ const Register: React.FC = () => {
                             <TransactionTypeButton
                                 type="up"
                                 title="income"
-                                onPress={() => handleTransactionType('up')}
-                                isActive={transactionType === 'up'}
+                                onPress={() => handleTransactionType('positive')}
+                                isActive={transactionType === 'positive'}
                             />
                             <TransactionTypeButton
                                 type="down"
                                 title="Outcome"
-                                onPress={() => handleTransactionType('down')}
-                                isActive={transactionType === 'down'}
+                                onPress={() => handleTransactionType('negative')}
+                                isActive={transactionType === 'negative'}
                             />
                         </TransactionTypes>
                         <CategorySelectButton
