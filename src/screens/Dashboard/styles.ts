@@ -86,13 +86,22 @@ export const Title = styled.Text`
     margin-bottom: 16px;
 `;
 
+// export const TransactionsList = styled(
+//         FlatList as new () => FlatList<DataListProps>,
+//     ).attrs({
+//     showsVerticalScrollIndicator: false,
+//     contentContainerStyle: {
+//         paddingBottom: getBottomSpace(),
+//     },
+// })``;
+
 export const TransactionsList = styled(
-        FlatList as new () => FlatList<DataListProps>,
+    FlatList as new () => FlatList<DataListProps[]>
     ).attrs({
     showsVerticalScrollIndicator: false,
-    contentContainerStyle: {
-        paddingBottom: getBottomSpace(),
-    },
+    contentContainerStyle: { 
+        paddingBottom: getBottomSpace() 
+    }
 })``;
 
 export const LogoutButton = styled(BorderlessButton)`

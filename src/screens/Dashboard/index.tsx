@@ -1,5 +1,5 @@
 import React,
-	{ 
+{ 
 		useEffect, 
 		useCallback,
 		useState
@@ -32,6 +32,7 @@ import {
 	TransactionsList,
 	LogoutButton,
 } from './styles';
+import Load from '../../components/Load';
 
 interface HighlightProps {
 	amount: string;
@@ -44,7 +45,7 @@ interface HighlightData {
 }
 
 const Dashboard: React.FC = () => {
-
+	const [isLoading, setIsLoading] = useState(true);
 	const [transaction, setTransations] = useState<DataListProps[]>([]);
 	const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
 	
@@ -104,6 +105,7 @@ const Dashboard: React.FC = () => {
 			}
 		});
 		setTransations(transactionsFormatted);
+		setIsLoading(false);
 	}
 	useEffect(() => {
 		loadTransactions();
@@ -117,51 +119,56 @@ const Dashboard: React.FC = () => {
 	
 	return (
 		<Container>
-			<Header>
-				<UserWrapper>
-					<UserInfo>
-						<Photo source={{ uri: 'https://github.com/rafinhaa.png' }} />
-						<User>
-							<UserGreeting>Olá,</UserGreeting>
-							<UserName>Rafinhaa</UserName>
-						</User>
-					</UserInfo>
-					<LogoutButton onPress={ () => {} } >
-						<Icon name="power"/>
-					</LogoutButton>
-				</UserWrapper>
-			</Header>
-			<HighlightCards
-				horizontal
-				showsHorizontalScrollIndicator={false}
-			>
-				<HighlightCard
-					title="Entradas"
-					amount={highlightData.entries.amount}
-					lastTransaction="R$ 1.000,00"
-					type="up"
-				/>
-				<HighlightCard
-					title="Saídas"
-					amount={highlightData.expensives.amount}
-					lastTransaction="R$ 1.000,00"
-					type="down"
-				/>
-				<HighlightCard
-					title="Meus projetos"
-					amount={highlightData.total.amount}
-					lastTransaction={"R$ 1.000,00"}
-					type="total"
-				/>
-			</HighlightCards>
-			<Transactions>
-				<Title>Listagem</Title>
-				<TransactionsList
-					data={transaction}
-					keyExtractor={item => String(item.id)}
-					renderItem={({ item }) => <TransactionCard data={item} />}
-				/>
-			</Transactions>
+				{
+				isLoading ? <Load /> :
+				<>
+					<Header>
+						<UserWrapper>
+							<UserInfo>
+								<Photo source={{ uri: 'https://github.com/rafinhaa.png' }} />
+								<User>
+									<UserGreeting>Olá,</UserGreeting>
+									<UserName>Rafinhaa</UserName>
+								</User>
+							</UserInfo>
+							<LogoutButton onPress={ () => {} } >
+								<Icon name="power"/>
+							</LogoutButton>
+						</UserWrapper>
+					</Header>
+					<HighlightCards
+						horizontal
+						showsHorizontalScrollIndicator={false}
+					>
+						<HighlightCard
+							title="Entradas"
+							amount={highlightData.entries.amount}
+							lastTransaction="R$ 1.000,00"
+							type="up"
+						/>
+						<HighlightCard
+							title="Saídas"
+							amount={highlightData.expensives.amount}
+							lastTransaction="R$ 1.000,00"
+							type="down"
+						/>
+						<HighlightCard
+							title="Meus projetos"
+							amount={highlightData.total.amount}
+							lastTransaction={"R$ 1.000,00"}
+							type="total"
+						/>
+					</HighlightCards>
+					<Transactions>
+						<Title>Listagem</Title>
+						<TransactionsList
+							data={transaction}
+							keyExtractor={(item: DataListProps) => String(item.id)}
+							renderItem={({ item }) => <TransactionCard data={item} />}
+						/>
+					</Transactions>
+				</>
+				}
 		</Container>
 	);
 }
