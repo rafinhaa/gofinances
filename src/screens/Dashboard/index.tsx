@@ -36,6 +36,7 @@ import Load from '../../components/Load';
 
 interface HighlightProps {
 	amount: string;
+	lastTransaction: string;
 }
 
 interface HighlightData {
@@ -46,8 +47,18 @@ interface HighlightData {
 
 const Dashboard: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true);
-	const [transaction, setTransations] = useState<DataListProps[]>([]);
+	const [transaction, setTransactions] = useState<DataListProps[]>([]);
 	const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
+
+	function getLastTransactionDate(collection: DataListProps[], type: 'positive'| 'negative'){
+		const lastTransactions = new Date (
+			Math.max.apply(Math, collection
+				.filter(t => t.type === type)
+				.map(t => new Date(t.date).getTime())
+			)
+		)
+		return `${lastTransactions.getDate()} de ${lastTransactions.toLocaleString('pt-BR',{month: 'long'})}`
+	}
 	
 	async function loadTransactions() {
 		const dataKey = '@gofinances:transactions';
@@ -84,28 +95,36 @@ const Dashboard: React.FC = () => {
 				}
 			}
 		);
+		setTransactions(transactionsFormatted);
+		const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
+		const lastTransactionExpensives = getLastTransactionDate(transactions, 'negative');
+		const totalInterval = `01 a ${lastTransactionExpensives}`;
+		
 		setHighlightData({
 			entries: {
 				amount: entriesTotal.toLocaleString('pt-BR', {
 					style: 'currency',
 					currency: 'BRL',
-				})
+				}),
+				lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
 			},
 			expensives: {
 				amount: expensiveTotal.toLocaleString('pt-BR', {
 					style: 'currency',
 					currency: 'BRL',
-				})
+				}),
+				lastTransaction: `Última saída dia ${lastTransactionExpensives}`,
 			},
 			total: {
 				amount: (entriesTotal - expensiveTotal).toLocaleString('pt-BR', {
 					style: 'currency',
 					currency: 'BRL',
-				})
+				}),
+				lastTransaction: totalInterval,
 			}
 		});
-		setTransations(transactionsFormatted);
 		setIsLoading(false);
+
 	}
 	useEffect(() => {
 		loadTransactions();
@@ -143,19 +162,19 @@ const Dashboard: React.FC = () => {
 						<HighlightCard
 							title="Entradas"
 							amount={highlightData.entries.amount}
-							lastTransaction="R$ 1.000,00"
+							lastTransaction={highlightData.entries.lastTransaction}
 							type="up"
 						/>
 						<HighlightCard
 							title="Saídas"
 							amount={highlightData.expensives.amount}
-							lastTransaction="R$ 1.000,00"
+							lastTransaction={highlightData.expensives.lastTransaction}
 							type="down"
 						/>
 						<HighlightCard
 							title="Meus projetos"
 							amount={highlightData.total.amount}
-							lastTransaction={"R$ 1.000,00"}
+							lastTransaction={highlightData.total.lastTransaction}
 							type="total"
 						/>
 					</HighlightCards>
