@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { VictoryPie } from 'victory-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 import HistoryCard from '../../components/HistoryCard';
 
@@ -11,7 +12,11 @@ import {
   Header, 
   Title,
   Content,
-  ChartContainer
+  ChartContainer,
+  MonthSelect,
+  MonthSelectButton,
+  MonthSelectIcon,
+  Month,
 } from './styles';
 import { categories } from '../../utils/categories';
 import theme from '../../global/styles/theme';
@@ -94,23 +99,34 @@ const Resume: React.FC = () => {
         <Header>
           <Title>Resumo por categoria</Title>
         </Header>
-        <ChartContainer>
-          <VictoryPie
-            data={totalByCategories}
-            x="percent"
-            y="total"
-            colorScale={totalByCategories.map(category => category.color)}
-            style={{
-              labels: {
-                fontSize: RFValue(18),
-                fontWeight: 'bold',
-                fill: theme.colors.shape
-              }
-            }}
-            labelRadius={50}
-          />
-        </ChartContainer>
-        <Content>
+        <Content
+          paddingBottomNumber={useBottomTabBarHeight()}
+        >
+          <MonthSelect>
+            <MonthSelectButton>
+              <MonthSelectIcon name="chevron-left" />
+            </MonthSelectButton>
+            <Month>Maio</Month>
+            <MonthSelectButton>
+            <MonthSelectIcon name="chevron-right" />
+            </MonthSelectButton>
+          </MonthSelect>
+          <ChartContainer>
+            <VictoryPie
+              data={totalByCategories}
+              x="percent"
+              y="total"
+              colorScale={totalByCategories.map(category => category.color)}
+              style={{
+                labels: {
+                  fontSize: RFValue(18),
+                  fontWeight: 'bold',
+                  fill: theme.colors.shape
+                }
+              }}
+              labelRadius={50}
+            />
+          </ChartContainer>
           {
             totalByCategories.map((category: CategoryData) => (
               <HistoryCard
