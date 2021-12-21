@@ -22,6 +22,7 @@ import {
 } from './styles';
 import { categories } from '../../utils/categories';
 import theme from '../../global/styles/theme';
+import Load from '../../components/Load';
 
 
 interface TransactionData {
@@ -42,11 +43,13 @@ interface CategoryData {
 }
 
 const Resume: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([]);
   const theme = useTheme();
 
   function handleDateChange(action: 'next' | 'prev') {
+    setIsLoading(true);
     if (action === 'next') {
       setSelectedDate(addMonths(selectedDate, 1));
     }else{
@@ -102,6 +105,7 @@ const Resume: React.FC = () => {
     });
 
     setTotalByCategories(totalByCategory);
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -128,31 +132,36 @@ const Resume: React.FC = () => {
             <MonthSelectIcon name="chevron-right" />
             </MonthSelectButton>
           </MonthSelect>
-          <ChartContainer>
-            <VictoryPie
-              data={totalByCategories}
-              x="percent"
-              y="total"
-              colorScale={totalByCategories.map(category => category.color)}
-              style={{
-                labels: {
-                  fontSize: RFValue(18),
-                  fontWeight: 'bold',
-                  fill: theme.colors.shape
-                }
-              }}
-              labelRadius={50}
-            />
-          </ChartContainer>
           {
-            totalByCategories.map((category: CategoryData) => (
-              <HistoryCard
-                key={category.key}
-                title={category.name}
-                amount={category.totalFormatted}
-                color={category.color}
-              />
-            ))
+            isLoading ? <Load /> :
+              <>
+                <ChartContainer>
+                  <VictoryPie
+                    data={totalByCategories}
+                    x="percent"
+                    y="total"
+                    colorScale={totalByCategories.map(category => category.color)}
+                    style={{
+                      labels: {
+                        fontSize: RFValue(18),
+                        fontWeight: 'bold',
+                        fill: theme.colors.shape
+                      }
+                    }}
+                    labelRadius={50}
+                  />
+                </ChartContainer>
+                {
+                  totalByCategories.map((category: CategoryData) => (
+                    <HistoryCard
+                      key={category.key}
+                      title={category.name}
+                      amount={category.totalFormatted}
+                      color={category.color}
+                    />
+                  ))
+                }
+              </>
           }
         </Content>
       </Container>
