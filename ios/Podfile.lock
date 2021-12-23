@@ -5,6 +5,8 @@ PODS:
     - ExpoModulesCore
   - EXConstants (12.1.3):
     - ExpoModulesCore
+  - EXCrypto (10.0.3):
+    - ExpoModulesCore
   - EXErrorRecovery (3.0.4):
     - ExpoModulesCore
   - EXFileSystem (13.0.3):
@@ -20,6 +22,8 @@ PODS:
     - ExpoModulesCore
   - ExpoModulesCore (0.4.9):
     - React-Core
+  - EXRandom (12.0.1):
+    - React-Core
   - EXSplashScreen (0.13.5):
     - ExpoModulesCore
     - React-Core
@@ -31,6 +35,8 @@ PODS:
     - EXUpdatesInterface
     - React-Core
   - EXUpdatesInterface (0.4.0)
+  - EXWebBrowser (10.0.3):
+    - ExpoModulesCore
   - FBLazyVector (0.64.3)
   - FBReactNativeSpec (0.64.3):
     - RCT-Folly (= 2020.01.13.00)
@@ -343,6 +349,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXCrypto (from `../node_modules/expo-crypto/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
@@ -351,10 +358,12 @@ DEPENDENCIES:
   - EXManifests (from `../node_modules/expo-manifests/ios`)
   - Expo (from `../node_modules/expo/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
+  - EXRandom (from `../node_modules/expo-random/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - EXStructuredHeaders (from `../node_modules/expo-structured-headers/ios`)
   - EXUpdates (from `../node_modules/expo-updates/ios`)
   - EXUpdatesInterface (from `../node_modules/expo-updates-interface/ios`)
+  - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -402,6 +411,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-application/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
+  EXCrypto:
+    :path: "../node_modules/expo-crypto/ios"
   EXErrorRecovery:
     :path: "../node_modules/expo-error-recovery/ios"
   EXFileSystem:
@@ -418,6 +429,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
+  EXRandom:
+    :path: "../node_modules/expo-random/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
   EXStructuredHeaders:
@@ -426,6 +439,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-updates/ios"
   EXUpdatesInterface:
     :path: "../node_modules/expo-updates-interface/ios"
+  EXWebBrowser:
+    :path: "../node_modules/expo-web-browser/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -498,6 +513,7 @@ SPEC CHECKSUMS:
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   EXApplication: 2b8f4d665e050ecddffcfb1ce258b7216b6b7777
   EXConstants: 66361ff23b5ea7eae3684ffad0f15955c23b5134
+  EXCrypto: e66bbd8e1ccfd36f4ad48e7a156251644164c6c2
   EXErrorRecovery: 9e481432a9ba7220832340911028892b49682a89
   EXFileSystem: 624eef3e3a853f19cc0c26eaffab1519001d8c35
   EXFont: e0a7f501df6e833398dfd4b075a022370e215236
@@ -506,10 +522,12 @@ SPEC CHECKSUMS:
   EXManifests: 15831e369de4e989f9cfe8c3321303f26745e41d
   Expo: 5b1f70fc24753f39ab3a03078ca6e598587f7e54
   ExpoModulesCore: 3478a7d76470a5b3870220cb2240cd6cd362409f
+  EXRandom: 96ad8cae9f2ba17caad172faa38f4603592f7978
   EXSplashScreen: 62f71e20d00cd42cf8cbdc808b848520ddebba01
   EXStructuredHeaders: 7d4a100b8321c6db341e91e730949558d4a48818
   EXUpdates: c6dcdb9a33cfb7d81cbe288e1ac7484fcda663d9
   EXUpdatesInterface: 2413d24feea140d6b30f6c73ec7f7e0281d3594a
+  EXWebBrowser: 817e2c8d26795dca02160f9eeadec77e98335039
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
   FBReactNativeSpec: 94d6ea912db37252f0c4a733a8e9e6baef4ba8eb
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
