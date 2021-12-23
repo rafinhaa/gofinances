@@ -5,7 +5,7 @@ import AppleSvg from '../../assets/apple.svg';
 import GoogleSvg from '../../assets/google.svg';
 import LogoSvg from '../../assets/logo.svg';
 import SignSocialButton from '../../components/SignSocialButton';
-import { AuthContext } from '../../AuthConext';
+import { useAuth } from '../../hooks/auth';
 
 import { 
     Container,
@@ -18,8 +18,9 @@ import {
 } from './styles';
 
 const SignIn: React.FC = () => {
-    const data = useContext(AuthContext);
-    console.log(data);
+    const data = useAuth();
+    console.log(data.user);
+    
     return (
         <Container>
             <Header>
