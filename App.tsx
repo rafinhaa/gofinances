@@ -16,6 +16,7 @@ import theme  from './src/global/styles/theme';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppRoutes } from './src/routes/app.routes';
 import SignIn from './src/screens/SignIn';
+import { AuthContext } from './src/AuthConext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ // aguarda o carregamento das fontes
@@ -31,9 +32,11 @@ export default function App() {
   return (
 
     <ThemeProvider theme={theme}>
-      <StatusBar barStyle="light-content"/>
       <NavigationContainer>
-        <SignIn/>
+        <StatusBar barStyle="light-content"/>
+        <AuthContext.Provider value={['value']}>
+          <SignIn/>
+        </AuthContext.Provider>
       </NavigationContainer>
     </ThemeProvider>
   );
