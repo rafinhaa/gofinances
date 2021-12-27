@@ -3,6 +3,7 @@ import React, {
         useContext
 } from "react";
 import * as AuthSession from "expo-auth-session";
+import * as AppleAuthentication from "expo-apple-authentication";
 
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
@@ -21,6 +22,7 @@ interface User {
 interface IAuthContextData {
     user: User;
     signInWithGoogle: () => Promise<void>;
+    signInWithApple: () => Promise<void>;
 }
 
 interface AuthorizationResponse {
@@ -58,8 +60,30 @@ function AuthProvider({children}: AuthProviderProps) {
         }
     }
 
+    async function signInWithApple(){
+        try {
+            const credentials = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                    AppleAuthentication.AppleAuthenticationScope.EMAIL
+                ]
+            });
+            if (credentials) {
+                setUser({
+                    id: credentials.user,
+                    email: credentials.email,
+                    name: credentials.fullName!.givenName!,
+                    photo: undefined
+                });
+            }
+        } catch (error) {
+            throw new Error(error);
+        }    
+    
+    }
+
     return (
-        <AuthContext.Provider value={{user, signInWithGoogle}}>
+        <AuthContext.Provider value={{user, signInWithGoogle, signInWithApple}}>
             {children}
         </AuthContext.Provider>
     );

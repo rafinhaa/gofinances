@@ -19,11 +19,20 @@ import {
 } from './styles';
 
 const SignIn: React.FC = () => {
-    const {signInWithGoogle} = useAuth();
+    const {signInWithGoogle, signInWithApple} = useAuth();
     
     async function handleSignInWithGoogle() {
         try {
             await signInWithGoogle();
+        } catch (error) {
+            console.log(error);
+            Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
+        }
+    }
+
+    async function handleSignInWithApple() {
+        try {
+            await signInWithApple();
         } catch (error) {
             console.log(error);
             Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
@@ -59,6 +68,7 @@ const SignIn: React.FC = () => {
                     <SignSocialButton 
                         title="Entrar com o Apple"
                         svg={AppleSvg}
+                        onPress={handleSignInWithApple}
                     />
                 </FooterWrapper>
             </Footer>
