@@ -30,7 +30,6 @@ const SignIn: React.FC = () => {
         } catch (error) {
             console.log(error);
             Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
-        } finally{
             setIsLoading(false);
         }
     }
@@ -42,7 +41,6 @@ const SignIn: React.FC = () => {
         } catch (error) {
             console.log(error);
             Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
-        } finally {
             setIsLoading(false);
         }
     }
