@@ -1,5 +1,8 @@
 import styled from "styled-components/native";
-import { ActivityIndicator } from "react-native";
+import { 
+    ActivityIndicator,
+} from "react-native";
+
 
 export const LoadContainer = styled.View`
     flex: 1;
@@ -8,6 +11,7 @@ export const LoadContainer = styled.View`
 `;
 
 export const LoadIndicator = styled(ActivityIndicator).attrs(props => ({
-    color: props.theme.colors.primary
+    color: props.color ? props.color : props.theme.colors.primary,
+    size: props.size ? props.size : 'large',
 }))`
 `;

@@ -1,13 +1,15 @@
 import React from 'react';
-import { useTheme } from 'styled-components';
+import {ActivityIndicatorProps} from 'react-native';
+
 
 import { LoadContainer, LoadIndicator } from './styles';
 
-const Load: React.FC = () => {
-    const theme = useTheme();
+const Load: React.FC<ActivityIndicatorProps> = ({
+    ...rest
+}) => {
     return (
         <LoadContainer>
-            <LoadIndicator size="large" />
+            <LoadIndicator {...rest} />
         </LoadContainer>
     );
 }

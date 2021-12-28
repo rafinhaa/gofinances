@@ -33,6 +33,7 @@ import {
 	LogoutButton,
 } from './styles';
 import Load from '../../components/Load';
+import { useAuth } from '../../hooks/auth';
 
 interface HighlightProps {
 	amount: string;
@@ -49,6 +50,7 @@ const Dashboard: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [transaction, setTransactions] = useState<DataListProps[]>([]);
 	const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
+	const { signOut, user } = useAuth();
 
 	function getLastTransactionDate(collection: DataListProps[], type: 'positive'| 'negative'){
 		const lastTransactions = new Date (
@@ -144,13 +146,13 @@ const Dashboard: React.FC = () => {
 					<Header>
 						<UserWrapper>
 							<UserInfo>
-								<Photo source={{ uri: 'https://github.com/rafinhaa.png' }} />
+								<Photo source={{ uri: user.photo }} />
 								<User>
 									<UserGreeting>Olá,</UserGreeting>
-									<UserName>Rafinhaa</UserName>
+									<UserName>{user.name}</UserName>
 								</User>
 							</UserInfo>
-							<LogoutButton onPress={ () => {} } >
+							<LogoutButton onPress={ signOut } >
 								<Icon name="power"/>
 							</LogoutButton>
 						</UserWrapper>

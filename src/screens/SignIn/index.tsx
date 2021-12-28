@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import AppleSvg from '../../assets/apple.svg';
@@ -17,25 +17,33 @@ import {
     Footer,
     FooterWrapper
 } from './styles';
+import Load from '../../components/Load';
 
 const SignIn: React.FC = () => {
     const {signInWithGoogle, signInWithApple} = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
     
     async function handleSignInWithGoogle() {
         try {
-            await signInWithGoogle();
+            setIsLoading(true);
+            return await signInWithGoogle();
         } catch (error) {
             console.log(error);
             Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
+        } finally{
+            setIsLoading(false);
         }
     }
 
     async function handleSignInWithApple() {
         try {
-            await signInWithApple();
+            setIsLoading(true);
+            return await signInWithApple();
         } catch (error) {
             console.log(error);
             Alert.alert('Erro', 'Ocorreu um erro ao fazer login, tente novamente.');
+        } finally {
+            setIsLoading(false);
         }
     }
     
@@ -71,6 +79,7 @@ const SignIn: React.FC = () => {
                         onPress={handleSignInWithApple}
                     />
                 </FooterWrapper>
+                { isLoading && <Load size='small' color='#FFF' /> }
             </Footer>
         </Container>
     );

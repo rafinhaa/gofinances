@@ -14,18 +14,17 @@ import { StatusBar } from 'react-native';
 
 import theme  from './src/global/styles/theme';
 import {Routes}  from './src/routes';
-import { AppRoutes } from './src/routes/app.routes';
-import SignIn from './src/screens/SignIn';
-import { AuthProvider } from './src/hooks/auth';
+import { AuthProvider, useAuth } from './src/hooks/auth';
 
 export default function App() {
+  const { userStorageLoad } = useAuth();
   const [fontsLoaded] = useFonts({ // aguarda o carregamento das fontes
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
   });
 
-  if (!fontsLoaded) { // se não carregou, retorna um loading
+  if (!fontsLoaded || userStorageLoad ) { // se não carregou, retorna um loading
     return <AppLoading />;
   }
 
