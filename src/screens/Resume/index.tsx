@@ -24,6 +24,7 @@ import { categories } from '../../utils/categories';
 import theme from '../../global/styles/theme';
 import Load from '../../components/Load';
 import { useFocusEffect } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth';
 
 
 interface TransactionData {
@@ -48,6 +49,7 @@ const Resume: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([]);
   const theme = useTheme();
+  const { user } = useAuth();
 
   function handleDateChange(action: 'next' | 'prev') {
     if (action === 'next') {
@@ -59,7 +61,7 @@ const Resume: React.FC = () => {
 
   async function loadData() {
     setIsLoading(true);
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
     
@@ -133,7 +135,7 @@ const Resume: React.FC = () => {
             </MonthSelectButton>
           </MonthSelect>
           {
-            isLoading ? <Load /> :
+            isLoading ? <Load /> : 
               <>
                 <ChartContainer>
                   <VictoryPie

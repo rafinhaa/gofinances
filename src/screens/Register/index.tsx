@@ -32,6 +32,7 @@ import {
     Fields,
     TransactionTypes,
 } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 interface FormDate {
     name: string;
@@ -63,7 +64,7 @@ const Register: React.FC = () => {
     });
     const [transactionType, setTransactionType] = useState('');
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);
-    const dataKey = '@gofinances:transactions';
+    const { user } = useAuth();
 
     function handleTransactionType(type: 'positive' | 'negative') {
         setTransactionType(type);
@@ -94,6 +95,7 @@ const Register: React.FC = () => {
             date: new Date()
         }
         try {
+            const dataKey = `@gofinances:transactions_user:${user.id}`;
             const data = await AsyncStorage.getItem(dataKey);
             const currentData = data ? JSON.parse(data) : [];
             const dataFormatted = [
