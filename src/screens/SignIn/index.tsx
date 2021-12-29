@@ -6,7 +6,7 @@ import GoogleSvg from '../../assets/google.svg';
 import LogoSvg from '../../assets/logo.svg';
 import SignSocialButton from '../../components/SignSocialButton';
 import { useAuth } from '../../hooks/auth';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 import { 
     Container,
@@ -71,11 +71,12 @@ const SignIn: React.FC = () => {
                         svg={GoogleSvg}
                         onPress={handleSignInWithGoogle}
                     />
-                    <SignSocialButton 
+                    { Platform.OS === 'ios' &&
+                        <SignSocialButton 
                         title="Entrar com o Apple"
                         svg={AppleSvg}
                         onPress={handleSignInWithApple}
-                    />
+                    />}
                 </FooterWrapper>
                 { isLoading && <Load size='small' color='#FFF' /> }
             </Footer>
