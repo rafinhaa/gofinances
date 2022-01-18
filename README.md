@@ -1,6 +1,6 @@
 <h4 align="center">
     <h1 align="center">
-      GoFinances
+       <img alt="Logo" title="Logo" src="docs/images/logo.svg" />
     </h1>
     <br><br>
 </h4>
@@ -16,6 +16,10 @@
       <a href="#-license">License</a>
   </p>
 </h4>
+
+<h1 align="center">
+  <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="docs/videos/demo.gif" />
+</h1>
 
 ## 🔖 About
 
@@ -34,8 +38,8 @@ Permite gerenciar finanças de multiplos usuários utilizando a autenticação S
 #### Clone the repository
 
 ```bash
-git clone https://github.com/rafinhaa/myskills.git
-cd myskills
+git clone https://github.com/rafinhaa/gofinances.git
+cd gofinances
 ```
 
 #### Install dependencies
@@ -44,22 +48,31 @@ cd myskills
 yarn install
 ```
 
-#### Build in iOS
-
+#### Edit dotenv file
 ```bash
-cd ios && pod install && cd..
-yarn run ios
+cp .env.example .env
+vi .env
+```
+
+#### Build in iOS
+```bash
+expo run:ios
 ```
 
 #### Build in Android
 ```bash
-yarn run androidexoeeee
+expo run:android
 ```
 
 ## ℹ️ Info
+#### Credentials config
+- [Google Console](https://console.cloud.google.com/)
+- [Expo Guide Authentication](https://docs.expo.dev/guides/authentication/#google)
+
+#### Images
+[Screenshots](docs/screenshots.md)
 
 ## 📝 License
-
 [MIT](LICENSE)
 
 **Free Software, Hell Yeah!**
