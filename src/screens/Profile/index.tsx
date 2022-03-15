@@ -4,9 +4,18 @@ import { View, Text, TextInput, Button } from "react-native";
 const Profile: React.FC = () => {
   return (
     <View>
-      <Text>Perfil</Text>
-      <TextInput placeholder="Nome" autoCorrect={false} />
-      <TextInput placeholder="Sobrenome" />
+      <Text testID="text-title">Perfil</Text>
+      <TextInput
+        testID="input-name"
+        placeholder="Nome"
+        autoCorrect={false}
+        value="Rafael"
+      />
+      <TextInput
+        testID="input-surname"
+        placeholder="Sobrenome"
+        value="Soncine"
+      />
       <Button title="Salvar" onPress={() => {}} />
     </View>
   );
