@@ -6,4 +6,7 @@ module.exports = {
     "jest-styled-components",
   ],
   setupFiles: ["./jest.setupFile.js"],
+  collectCoverage: true,
+  collectCoverageFrom: ["src/**/*.tsx", "!src/**/__tests__/*.spec.tsx"],
+  coverageReporters: ["lcov"],
 };
