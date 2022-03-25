@@ -4,9 +4,13 @@
     "slug": "gofinances",
     "scheme": "gofinances",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "icon": "./assets/icon.png",
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#5636d3"
+    }
   },
   "name": "gofinances"
 }

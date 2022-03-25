@@ -535,7 +535,7 @@ SPEC CHECKSUMS:
   EXUpdatesInterface: e1c01b4f5ec76bd1d6cc714938f9edf5ef6379b9
   EXWebBrowser: ecb70d9e6edb279d9b10b2bbc9ad4320fcdc4060
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
-  FBReactNativeSpec: 3a0ceb0aff7f0dbb25ce3fa14cc235aa776fcea9
+  FBReactNativeSpec: 001eef0c29766ba4cf73d3b9773cd6e243d4d23d
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: d34bf57e17cb6e3b2681f4809b13843c021feb6c
